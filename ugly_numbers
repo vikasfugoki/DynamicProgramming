@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+long unsigned minnun (long unsigned  a, long unsigned b, long unsigned c) {
+    
+    if (a <= b && a <= c) {
+        return a;
+    }
+    else if (b <= a && b <= c) {
+        return b;
+    }
+    else {
+        return c;
+    }
+}
+
+int main() {
+	//code
+	long unsigned n, t, i;
+	cin >> t;
+	
+	while (t--) {
+	    cin >> n;
+	    long unsigned  ugly[n];
+	    ugly[0] = 1;
+	    
+	    long unsigned i2, i3, i5;
+	    i2 = i3 = i5 = 0;
+	    long unsigned nun, nun2, nun3, nun5;
+	    nun2 = 2;
+	    nun3 = 3;
+	    nun5 = 5;
+	    
+	    for (i=1; i<n; i++) {
+	        
+	        
+	        nun = minnun (nun2, nun3, nun5);
+	        ugly[i] = nun;
+	        if (nun == nun2) {
+	            i2++;
+	            nun2 = ugly[i2]*2;
+	        }
+	        if (nun == nun3) {
+	            i3++;
+	            nun3 = ugly[i3]*3;
+	        }
+	        if (nun == nun5) {
+	            i5++;
+	            nun5 = ugly[i5]*5;
+	        }
+	        
+	        
+	        
+	        //cout << nun << " ";
+	    }
+	    cout << ugly[n-1] << endl;
+	}
+	return 0;
+}
