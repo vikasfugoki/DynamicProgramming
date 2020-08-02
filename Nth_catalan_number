@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	//code
+	int t, n;
+	cin >> t;
+	
+	while (t--) {
+	    cin >> n;
+	     long int catalan[n+1];
+	    long int i, j;
+	    catalan[0] = 1;
+	    for (i=1; i<=n; i++) {
+	        catalan[i] = 0;
+	        for (j=0; j<i; j++) {
+	            catalan[i] += catalan[j] * catalan[i-j-1]; 
+	        }
+	        cout << i << " " << catalan[i]  << endl;
+	       // cout << catalan[i] << " ";
+	    }
+	    
+	    cout << catalan[n] << endl;
+	    //return catalan[n];
+	}
+	return 0;
+}
