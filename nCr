@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+long int bell[1000][1000];
+
+// function to initialize the 2d array with -1
+void initialize (int n, int k) {
+    int i, j;
+    for (i=0; i<n; i++) {
+	        for (j=0; j<k; j++) {
+	            bell[i][j] = -1;
+	        }
+	    }
+}
+
+int bincoef (int n, int k) {
+    
+    if (bell[n][k] == -1) {
+        
+        if (k > n) {
+            bell[n][k] = 0;
+            return bell[n][k];
+        }
+            
+        
+        if (k==0 || k==n) {
+            bell[n][k] = 1;
+            return bell[n][k];
+        }
+        
+        bell[n][k] = (bincoef(n-1, k-1) + bincoef(n-1, k))%1000000007;
+        return bell[n][k];
+    }
+    //cout << n << " " << k << " ->" << bell[n][k] << endl;
+    return bell[n][k];
+}
+
+int main() {
+	//code
+	int t, n, k;
+	cin >> t;
+	
+	while (t--) {
+	    cin >> n >> k;
+	    //long int bell[n+1][k+1];
+	    int i, j;
+	    
+	    initialize(n+1, k+1);
+	    
+	    cout << bincoef(n, k)%1000000007 << endl;
+	    
+	}
+	return 0;
+}
